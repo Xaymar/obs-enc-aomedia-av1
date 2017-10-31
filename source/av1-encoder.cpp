@@ -1,4 +1,4 @@
-﻿/*
+/*
  * AV1 Encoder for Open Broadcaster Software Studio
  * Copyright (C) 2017 Michael Fabian Dirks
  *
@@ -181,11 +181,11 @@ void AV1Encoder::get_defaults(obs_data_t *data) {
 	obs_data_set_default_int(data, P_LAGINFRAMES, cfg.g_lag_in_frames);
 	obs_data_set_default_int(data, P_RC_DROPFRAMETHRESHOLD, cfg.rc_dropframe_thresh);
 	obs_data_set_default_int(data, P_RC_RESIZE_MODE, cfg.rc_resize_mode);
-	obs_data_set_default_int(data, P_RC_RESIZE_NUMERATOR, cfg.rc_resize_numerator);
-	obs_data_set_default_int(data, P_RC_RESIZE_KEYFRAMENUMERATOR, cfg.rc_resize_kf_numerator);
+	obs_data_set_default_int(data, P_RC_RESIZE_NUMERATOR, cfg.rc_resize_denominator);
+	obs_data_set_default_int(data, P_RC_RESIZE_KEYFRAMENUMERATOR, cfg.rc_resize_kf_denominator);
 	obs_data_set_default_int(data, P_RC_SUPERRES_MODE, cfg.rc_superres_mode);
-	obs_data_set_default_int(data, P_RC_SUPERRES_NUMERATOR, cfg.rc_superres_numerator);
-	obs_data_set_default_int(data, P_RC_SUPERRES_KEYFRAMENUMERATOR, cfg.rc_superres_kf_numerator);
+	obs_data_set_default_int(data, P_RC_SUPERRES_NUMERATOR, cfg.rc_superres_denominator);
+	obs_data_set_default_int(data, P_RC_SUPERRES_KEYFRAMENUMERATOR, cfg.rc_superres_kf_denominator);
 	obs_data_set_default_int(data, P_RC_MODE, cfg.rc_end_usage);
 	obs_data_set_default_int(data, P_RC_BITRATE, cfg.rc_target_bitrate);
 	obs_data_set_default_int(data, P_RC_QUANTIZER_MIN, cfg.rc_min_quantizer);
@@ -331,11 +331,11 @@ bool AV1Encoder::update(obs_data_t *data) {
 	m_configuration.g_lag_in_frames = (unsigned int)obs_data_get_int(data, P_LAGINFRAMES);
 	m_configuration.rc_dropframe_thresh = (unsigned int)obs_data_get_int(data, P_RC_DROPFRAMETHRESHOLD);
 	m_configuration.rc_resize_mode = (unsigned int)obs_data_get_int(data, P_RC_RESIZE_MODE);
-	m_configuration.rc_resize_numerator = (unsigned int)obs_data_get_int(data, P_RC_RESIZE_NUMERATOR);
-	m_configuration.rc_resize_kf_numerator = (unsigned int)obs_data_get_int(data, P_RC_RESIZE_KEYFRAMENUMERATOR);
+	m_configuration.rc_resize_denominator = (unsigned int)obs_data_get_int(data, P_RC_RESIZE_NUMERATOR);
+	m_configuration.rc_resize_kf_denominator = (unsigned int)obs_data_get_int(data, P_RC_RESIZE_KEYFRAMENUMERATOR);
 	m_configuration.rc_superres_mode = (unsigned int)obs_data_get_int(data, P_RC_SUPERRES_MODE);
-	m_configuration.rc_superres_numerator = (unsigned int)obs_data_get_int(data, P_RC_SUPERRES_NUMERATOR);
-	m_configuration.rc_superres_kf_numerator = (unsigned int)obs_data_get_int(data, P_RC_SUPERRES_KEYFRAMENUMERATOR);
+	m_configuration.rc_superres_denominator = (unsigned int)obs_data_get_int(data, P_RC_SUPERRES_NUMERATOR);
+	m_configuration.rc_superres_kf_denominator = (unsigned int)obs_data_get_int(data, P_RC_SUPERRES_KEYFRAMENUMERATOR);
 	m_configuration.rc_end_usage = (aom_rc_mode)obs_data_get_int(data, P_RC_MODE);
 	m_configuration.rc_target_bitrate = (unsigned int)obs_data_get_int(data, P_RC_BITRATE);
 	m_configuration.rc_min_quantizer = (unsigned int)obs_data_get_int(data, P_RC_QUANTIZER_MIN);

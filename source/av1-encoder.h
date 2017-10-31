@@ -1,4 +1,4 @@
-﻿/*
+/*
  * AV1 Encoder for Open Broadcaster Software Studio
  * Copyright (C) 2017 Michael Fabian Dirks
  *
@@ -18,11 +18,14 @@
  */
 
 #pragma once
+extern "C" {
+#pragma warning(push)
+#pragma warning(disable:4201)
 #include "libobs/obs-module.h"
-
- //AOM
 #include <aom/aom.h>
 #include <aom/aom_encoder.h>
+#pragma warning(pop)
+}
 
 class AV1Encoder {
 	public:
