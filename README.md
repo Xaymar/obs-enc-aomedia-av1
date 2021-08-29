@@ -1,0 +1,2 @@
+# AOM-AV1 Encoder plugin for OBS Studio
+This was an early attempt at integrating the AOM AV1 library, which ended up being too slow for any usage, as it was encoding frames in the per-minute ranges, often not even reaching a single frame per minute on top of the line hardware. As it was not worth continuing at that point until lots of progress on AV1 encoding was made, it was archived. This progress has now been made, and a new attempt at offering it to users will be available [in StreamFX](https://github.com/Xaymar/obs-StreamFX/wiki).
